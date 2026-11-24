@@ -1,0 +1,561 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>صوت منطقتي | الأردن الرقمي</title>
+
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+ margin:0;
+ font-family:Tahoma,Arial,sans-serif;
+ background:#071711;
+ color:#f4f7f3;
+}
+:root{
+ --green:#0b5b3c;
+ --gold:#e6c35b;
+ --red:#a51f32;
+ --white:#f4f5ef;
+ --muted:#a9b9ae;
+}
+header{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ padding:20px 6%;
+ background:#091e16;
+ border-bottom:1px solid #254535;
+ position:sticky;
+ top:0;
+ z-index:5;
+}
+.logo{font-size:23px;font-weight:bold}
+.logo span{color:var(--gold)}
+nav a{
+ color:#dce8df;
+ text-decoration:none;
+ margin:0 9px;
+ font-size:14px;
+}
+.hero{
+ min-height:480px;
+ padding:65px 8%;
+ display:flex;
+ flex-direction:column;
+ justify-content:center;
+ align-items:center;
+ text-align:center;
+ background:
+ radial-gradient(ellipse at 50% 20%,#176a46 0%,transparent 55%),
+ linear-gradient(130deg,#071711,#103d2b,#071711);
+ border-bottom:1px solid #345b43;
+}
+.flag{font-size:66px}
+.eyebrow{
+ color:var(--gold);
+ letter-spacing:3px;
+ font-size:13px;
+}
+.hero h1{
+ font-size:clamp(38px,7vw,68px);
+ margin:15px 0;
+}
+.hero h1 span{color:var(--gold)}
+.hero p{
+ color:#d2dfd5;
+ line-height:2;
+ max-width:650px;
+ font-size:17px;
+}
+.btn{
+ display:inline-block;
+ background:var(--gold);
+ color:#10291d;
+ border:0;
+ padding:15px 27px;
+ border-radius:8px;
+ font-weight:bold;
+ font-size:16px;
+ cursor:pointer;
+ text-decoration:none;
+ margin:10px;
+}
+.btn-outline{
+ background:transparent;
+ color:white;
+ border:1px solid #91b49b;
+}
+.container{
+ width:min(1100px,92%);
+ margin:55px auto;
+}
+.section-title{
+ font-size:29px;
+ text-align:center;
+ margin-bottom:12px;
+}
+.sub{
+ text-align:center;
+ color:var(--muted);
+ line-height:1.9;
+}
+.stats{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+ gap:15px;
+ margin-top:-5px;
+}
+.stat{
+ background:#10281d;
+ border:1px solid #294a37;
+ padding:23px;
+ border-radius:13px;
+ text-align:center;
+}
+.stat strong{
+ display:block;
+ color:var(--gold);
+ font-size:32px;
+ margin-bottom:9px;
+}
+.stat span{color:#b9c9bd;font-size:14px}
+.gov-grid{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(145px,1fr));
+ gap:13px;
+ margin-top:30px;
+}
+.gov{
+ padding:19px 10px;
+ text-align:center;
+ background:#10271d;
+ border:1px solid #31533e;
+ border-radius:12px;
+ cursor:pointer;
+ transition:.2s;
+ color:white;
+ font-family:inherit;
+}
+.gov:hover,.gov.active{
+ background:#185a3b;
+ border-color:var(--gold);
+ transform:translateY(-3px);
+}
+.gov b{display:block;font-size:17px;margin-bottom:8px}
+.gov small{color:#c3d1c7}
+.panel{
+ background:#10251b;
+ border:1px solid #31513d;
+ border-radius:17px;
+ padding:30px;
+ margin-top:25px;
+}
+label{
+ display:block;
+ margin:19px 0 9px;
+ font-weight:bold;
+}
+input,select,textarea{
+ width:100%;
+ background:#091a12;
+ color:white;
+ border:1px solid #45644f;
+ border-radius:8px;
+ padding:14px;
+ font-family:inherit;
+ font-size:15px;
+}
+textarea{resize:vertical}
+input::placeholder,textarea::placeholder{color:#93a79a}
+.form-grid{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:15px;
+}
+button.submit{
+ width:100%;
+ border:0;
+ background:var(--gold);
+ color:#122a1d;
+ font-size:17px;
+ font-weight:bold;
+ padding:15px;
+ margin-top:23px;
+ border-radius:8px;
+ cursor:pointer;
+}
+.issue-grid{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+ gap:14px;
+ margin-top:28px;
+}
+.issue{
+ background:#10271d;
+ border:1px solid #294a37;
+ padding:20px;
+ border-radius:12px;
+}
+.issue i{font-size:29px;font-style:normal}
+.issue h3{color:var(--gold)}
+.issue p{color:#b9c9bd;line-height:1.7;font-size:14px}
+.report{
+ background:#10271d;
+ border:1px solid #345640;
+ border-right:4px solid var(--gold);
+ padding:18px;
+ border-radius:10px;
+ margin-top:13px;
+}
+.report h3{margin:10px 0}
+.report p{color:#bdcbbf;line-height:1.7}
+.tag{
+ display:inline-block;
+ padding:6px 10px;
+ background:#34482d;
+ color:#f4d879;
+ border-radius:20px;
+ font-size:12px;
+}
+.empty{text-align:center;color:#9aafa0;padding:25px}
+.banner{
+ background:linear-gradient(110deg,#123f2b,#1a6444);
+ border:1px solid #447c53;
+ padding:35px;
+ border-radius:16px;
+ text-align:center;
+ line-height:2;
+}
+footer{
+ margin-top:65px;
+ background:#091c13;
+ border-top:1px solid #31513d;
+ text-align:center;
+ padding:35px 15px;
+ color:#b7c7bb;
+ line-height:2;
+}
+@media(max-width:650px){
+ header{flex-direction:column;gap:15px}
+ nav{display:flex;flex-wrap:wrap;justify-content:center}
+ .form-grid{grid-template-columns:1fr}
+ .hero{padding:45px 15px}
+ .panel{padding:20px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+ <div class="logo">🇯🇴 صوت <span>منطقتي</span></div>
+ <nav>
+  <a href="#home">الرئيسية</a>
+  <a href="#governorates">المحافظات</a>
+  <a href="#problems">التحديات</a>
+  <a href="#report">شاركنا</a>
+  <a href="#reports">البلاغات</a>
+ </nav>
+</header>
+
+<section class="hero" id="home">
+ <div class="flag">🇯🇴</div>
+ <div class="eyebrow">JORDAN • DIGITAL FUTURE</div>
+ <h1>الأردن <span>يسمعك</span></h1>
+ <h2>صوت منطقتي</h2>
+ <p>
+  منصة رقمية تجمع أصوات الأردنيين من جميع المحافظات،
+  وترصد احتياجات المناطق وتحول الأفكار إلى فرص للتطوير.
+  <br>
+  لأن مستقبل الأردن يبدأ من صوت كل مواطن.
+ </p>
+ <div>
+  <a class="btn" href="#report">شارك في تطوير الأردن</a>
+  <a class="btn btn-outline" href="#governorates">اكتشف المحافظات</a>
+ </div>
+</section>
+
+<div class="container">
+ <div class="stats">
+  <div class="stat">
+   <strong>12</strong>
+   <span>محافظة أردنية</span>
+  </div>
+  <div class="stat">
+   <strong id="count">0</strong>
+   <span>بلاغ تجريبي مسجل على هذا الجهاز</span>
+  </div>
+  <div class="stat">
+   <strong id="solved">0</strong>
+   <span>بلاغات تم حلها في هذا النموذج</span>
+  </div>
+  <div class="stat">
+   <strong>∞</strong>
+   <span>أفكار وفرص للمستقبل</span>
+  </div>
+ </div>
+</div>
+
+<section class="container" id="governorates">
+ <h2 class="section-title">محافظات المملكة</h2>
+ <p class="sub">الأردن كله في منصة واحدة. اختر محافظتك.</p>
+
+ <div class="gov-grid" id="govGrid"></div>
+
+ <p class="sub" id="selectedGov">لم يتم اختيار محافظة بعد.</p>
+</section>
+
+<section class="container" id="problems">
+ <h2 class="section-title">ماذا نرصد؟</h2>
+ <p class="sub">مجالات تساعدنا على فهم احتياجات المناطق.</p>
+
+ <div class="issue-grid">
+  <div class="issue">
+   <i>🚧</i><h3>البنية التحتية</h3>
+   <p>الطرق، الحفر، الأرصفة وصيانة الشوارع.</p>
+  </div>
+  <div class="issue">
+   <i>🌱</i><h3>البيئة والنظافة</h3>
+   <p>النفايات، التشجير، الحدائق والمساحات العامة.</p>
+  </div>
+  <div class="issue">
+   <i>💡</i><h3>الخدمات العامة</h3>
+   <p>الإنارة والمرافق والخدمات في المناطق.</p>
+  </div>
+  <div class="issue">
+   <i>🚍</i><h3>النقل والمواصلات</h3>
+   <p>النقل العام والمواقف والازدحام.</p>
+  </div>
+  <div class="issue">
+   <i>💧</i><h3>المياه</h3>
+   <p>التسربات والصرف الصحي وتصريف الأمطار.</p>
+  </div>
+  <div class="issue">
+   <i>🏫</i><h3>التعليم والمرافق</h3>
+   <p>احتياجات المرافق التعليمية والمجتمعية.</p>
+  </div>
+  <div class="issue">
+   <i>🏥</i><h3>الخدمات الصحية</h3>
+   <p>احتياجات المرافق الصحية وسهولة الوصول إليها.</p>
+  </div>
+  <div class="issue">
+   <i>♿</i><h3>إمكانية الوصول</h3>
+   <p>تسهيل حركة كبار السن والأشخاص ذوي الإعاقة.</p>
+  </div>
+ </div>
+</section>
+
+<section class="container" id="report">
+ <h2 class="section-title">صوتك يصنع الفرق</h2>
+ <p class="sub">اختر المحافظة وحدد التحدي الذي تريد الإبلاغ عنه.</p>
+
+ <div class="panel">
+  <div class="form-grid">
+   <div>
+    <label>المحافظة</label>
+    <select id="governorate">
+     <option value="">اختر المحافظة</option>
+    </select>
+   </div>
+   <div>
+    <label>اللواء أو المنطقة</label>
+    <input id="district" placeholder="اكتب اسم اللواء أو المنطقة">
+   </div>
+  </div>
+
+  <label>مجال المشكلة</label>
+  <select id="category">
+   <option value="">اختر المجال</option>
+   <option>البنية التحتية والطرق</option>
+   <option>البيئة والنظافة</option>
+   <option>الخدمات العامة والإنارة</option>
+   <option>النقل والمواصلات</option>
+   <option>المياه والصرف الصحي</option>
+   <option>التعليم والمرافق</option>
+   <option>الخدمات الصحية</option>
+   <option>إمكانية الوصول</option>
+   <option>مجال آخر</option>
+  </select>
+
+  <label>نوع المشكلة</label>
+  <select id="issue">
+   <option value="">اختر نوع المشكلة</option>
+   <option>حفر أو تلف في الطريق</option>
+   <option>تراكم النفايات</option>
+   <option>تعطل إنارة الشوارع</option>
+   <option>أرصفة متضررة</option>
+   <option>تجمع مياه الأمطار</option>
+   <option>نقص المساحات الخضراء</option>
+   <option>ازدحام مروري</option>
+   <option>نقص مواقف النقل العام</option>
+   <option>تسرب مياه</option>
+   <option>نقص مرافق أو خدمات</option>
+   <option>أخرى</option>
+  </select>
+
+  <label>وصف مختصر للمشكلة</label>
+  <textarea id="details" rows="4"
+   placeholder="اشرح المشكلة دون كتابة اسمك أو معلوماتك الشخصية..."></textarea>
+
+  <button class="submit" onclick="sendReport()">
+   إرسال البلاغ إلى النموذج التجريبي
+  </button>
+  <p class="sub" id="message"></p>
+ </div>
+</section>
+
+<section class="container" id="reports">
+ <h2 class="section-title">نبض المحافظات</h2>
+ <p class="sub">البلاغات التي سُجلت على هذا الجهاز في النموذج التجريبي.</p>
+ <div id="reportList"></div>
+</section>
+
+<section class="container">
+ <div class="banner">
+  <div style="font-size:42px">💡</div>
+  <h2>أفكار تبني الأردن</h2>
+  <p>
+   لا نريد فقط معرفة التحديات.
+   نريد أيضاً اكتشاف أفكار الشباب والمجتمع
+   التي يمكن أن تساهم في مستقبل المملكة.
+  </p>
+  <p style="color:#f1d77c;font-weight:bold">
+   الأردن ليس مجرد مكان نعيش فيه، بل مستقبل نبنيه معاً.
+  </p>
+ </div>
+</section>
+
+<footer>
+ <div style="font-size:35px">🇯🇴</div>
+ <h2>صوت منطقتي</h2>
+ <p>من كل محافظة يبدأ التغيير.</p>
+ <p>مشروع رقمي تجريبي مستقل، وليس منصة حكومية رسمية.</p>
+ <p>© 2026 صوت منطقتي | الأردن</p>
+</footer>
+
+<script>
+const governorates = [
+ "عمّان","إربد","الزرقاء","البلقاء",
+ "الكرك","معان","العقبة","المفرق",
+ "جرش","عجلون","مادبا","الطفيلة"
+];
+
+const emojis = [
+ "🏙️","🌳","🏗️","🌿","🏰","🏜️",
+ "🌊","🌾","🌲","⛰️","🏛️","🌄"
+];
+
+let reports = JSON.parse(localStorage.getItem("jordanReports") || "[]");
+
+function buildGovernorates() {
+ const grid = document.getElementById("govGrid");
+ const select = document.getElementById("governorate");
+
+ governorates.forEach((name,index) => {
+  let button = document.createElement("button");
+  button.className = "gov";
+  button.innerHTML =
+   "<b>" + emojis[index] + " " + name + "</b><small>استكشف المحافظة</small>";
+
+  button.onclick = () => {
+   select.value = name;
+   document.getElementById("selectedGov").textContent =
+    "تم اختيار محافظة " + name + " 🇯🇴";
+   document.getElementById("report").scrollIntoView({behavior:"smooth"});
+  };
+
+  grid.appendChild(button);
+
+  let option = document.createElement("option");
+  option.value = name;
+  option.textContent = name;
+  select.appendChild(option);
+ });
+}
+
+function sendReport() {
+ const governorate = document.getElementById("governorate").value;
+ const district = document.getElementById("district").value.trim();
+ const category = document.getElementById("category").value;
+ const issue = document.getElementById("issue").value;
+ const details = document.getElementById("details").value.trim();
+ const message = document.getElementById("message");
+
+ if (!governorate || !district || !category || !issue || !details) {
+  message.textContent = "يرجى تعبئة جميع الحقول المطلوبة.";
+  return;
+ }
+
+ const report = {
+  governorate,
+  district,
+  category,
+  issue,
+  details,
+  date: new Date().toLocaleDateString("ar-JO"),
+  status:"جديد - تجريبي"
+ };
+
+ reports.unshift(report);
+ localStorage.setItem("jordanReports",JSON.stringify(reports));
+
+ message.textContent = "تم تسجيل البلاغ في النموذج التجريبي!";
+ document.getElementById("district").value = "";
+ document.getElementById("category").value = "";
+ document.getElementById("issue").value = "";
+ document.getElementById("details").value = "";
+
+ showReports();
+}
+
+function showReports() {
+ const list = document.getElementById("reportList");
+ list.innerHTML = "";
+
+ document.getElementById("count").textContent = reports.length;
+ document.getElementById("solved").textContent = "0";
+
+ if (reports.length === 0) {
+  list.innerHTML = '<div class="empty">لا توجد بلاغات تجريبية حتى الآن. كن أول من يشارك!</div>';
+  return;
+ }
+
+ reports.forEach(report => {
+  const card = document.createElement("div");
+  card.className = "report";
+
+  const tag = document.createElement("span");
+  tag.className = "tag";
+  tag.textContent = report.status;
+
+  const title = document.createElement("h3");
+  title.textContent = report.issue;
+
+  const place = document.createElement("p");
+  place.textContent = "المحافظة: " + report.governorate +
+   " | المنطقة: " + report.district;
+
+  const category = document.createElement("p");
+  category.textContent = "المجال: " + report.category;
+
+  const details = document.createElement("p");
+  details.textContent = report.details;
+
+  const date = document.createElement("small");
+  date.textContent = "تاريخ التسجيل: " + report.date;
+
+  card.append(tag,title,place,category,details,date);
+  list.appendChild(card);
+ });
+}
+
+buildGovernorates();
+showReports();
+</script>
+
+</body>
+</html>
